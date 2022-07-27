@@ -1,0 +1,42 @@
+ul{
+    list-style-type: none;
+}
+
+.cross{
+    text-decoration: line-through;
+}
+.normal{
+    text-decoration: none;
+}
+
+span{
+    color: red;
+    cursor: pointer;
+   /*  border: 1px solid red; */
+}
+
+#list li:first-child{
+    margin-top: 30px;
+} 
+
+.modal_open{
+    display: block;
+    top: 150px;
+    max-width: 500px;
+    margin-left: 20%;
+    
+}
+
+.modal_open, .text{
+    padding-left: 28px;
+    padding-top: 16px;
+}
+
+.activeLink, .notActiveLink{
+    display: flex;
+    
+}
+
+.activeLink .active,.notActiveLink .notActive{
+    margin-left: 20px;
+}

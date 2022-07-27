@@ -1,0 +1,108 @@
+var inputData = document.querySelector('#inputTask');
+var btnAddTask = document.querySelector('#btn-add');
+var ulList = document.querySelector('#list');
+var spans = document.getElementsByTagName('span');
+var currentDate = new Date().toLocaleDateString();
+var btnOpen = document.querySelector('#btn-modal');
+var modal = document.querySelector('#modal1');
+var btnClose = document.querySelector('.modal-close');
+var liCross = document.querySelectorAll('li');
+var activeLink = document.querySelector('#active');
+var notActiveLink = document.querySelector('#not-active');
+
+//<li>Task1 <span>Delete</span></li>
+function createTask(){
+    var inputValue = inputData.value;
+    inputData.value = '';
+
+    if(/* inputValue === '' || */  !inputValue.trim().length){
+        inputData.focus();
+     } else{
+        var newLi = document.createElement('li');
+        newLi.innerText = inputValue + ' ' + currentDate;
+      
+    
+        var newSpan = document.createElement('span');
+        newSpan.innerText =  ' Delete'
+    
+        newLi.append(newSpan);
+        ulList.append(newLi);
+      }
+    
+    
+    
+        newLi.addEventListener('click', function(){
+            newLi.classList.toggle('cross')
+            active();
+            notActive();
+        })
+    
+
+
+    removeTask();
+    active();
+    notActive();
+}
+
+//CrossElem
+liCross.forEach(function(elem){
+    elem.addEventListener('click', function(){
+        elem.classList.toggle('cross')
+        active();
+        notActive();
+    })
+   
+});
+
+
+//ActiveTask
+function active(){
+    var allTask = document.querySelectorAll('li')
+    var allCross = document.querySelectorAll('li.cross')
+    activeLink.innerHTML = allTask.length - allCross.length
+    
+}
+//NotActiveTask
+function notActive(){
+    var allCross = document.querySelectorAll('li.cross')
+    notActiveLink.innerHTML =  allCross.length
+}
+
+
+//
+btnAddTask.onclick = createTask;
+
+
+//span
+function removeTask(){
+    for(let spanItem of spans){
+        spanItem.onclick = function(){
+            spanItem.parentElement.remove();
+            active();
+            notActive();
+        }
+    }
+}
+
+removeTask();
+active();
+notActive();
+
+
+//developer info
+btnOpen.addEventListener('click', function(){
+        modal.classList.add('modal_open');
+})
+
+btnClose.addEventListener('click', function(){
+    modal.classList.remove('modal_open');
+})
+
+
+
+
+
+
+
+
+
